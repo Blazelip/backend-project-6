@@ -1,0 +1,15 @@
+.idea/
+.vscode/
+node_modules/
+build/
+dist/
+tmp/
+temp/
+database.sqlite
+.env
+
+# macOS
+.DS_Store
+
+# Test coverage
+coverage
