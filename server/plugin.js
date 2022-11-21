@@ -32,16 +32,21 @@ const mode = process.env.NODE_ENV || 'development';
 // const isDevelopment = mode === 'development';
 
 const setUpViews = (app) => {
+  // Получаем объект функций помогаторов
   const helpers = getHelpers(app);
+  // Подключаем шаблонизатор pug
   app.register(fastifyView, {
     engine: {
       pug: Pug,
     },
     includeViewExtension: true,
+    //  Функции, которыми можно пользоваться в шаблонах pug.
+    // Добавляем все хелпер-функции + функция для формирования пути файла
     defaultContext: {
       ...helpers,
       assetPath: (filename) => `/assets/${filename}`,
     },
+    // Установка пути, откуда брать шаблоны
     templates: path.join(__dirname, '..', 'server', 'views'),
   });
 
@@ -51,7 +56,9 @@ const setUpViews = (app) => {
 };
 
 const setUpStaticAssets = (app) => {
+  // выбор папки для static файлов
   const pathPublic = path.join(__dirname, '..', 'dist');
+  // Подключение к fastify плагина для подгрузки static файлов
   app.register(fastifyStatic, {
     root: pathPublic,
     prefix: '/assets/',
@@ -109,6 +116,9 @@ const registerPlugins = async (app) => {
   )(...args));
 
   await app.register(fastifyMethodOverride);
+  // Подключает плагин fastify Objection, задает опции knexconfig файл
+  // Выбирая режим работу через переменную mode
+  // Задает модели-связи между БД
   await app.register(fastifyObjectionjs, {
     knexConfig: knexConfig[mode],
     models,

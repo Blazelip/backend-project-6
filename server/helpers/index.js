@@ -7,6 +7,7 @@ export default (app) => ({
   route(name) {
     return app.reverse(name);
   },
+  // Получает строчку на вход и возвращает локаль из объекта
   t(key) {
     return i18next.t(key);
   },

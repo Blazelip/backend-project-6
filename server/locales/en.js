@@ -41,8 +41,8 @@ export default {
         email: 'Email',
         createdAt: 'Created at',
         new: {
-          submit: 'Register',
-          signUp: 'Register',
+          submit: 'Sign up',
+          signUp: 'Sign up',
         },
       },
       welcome: {
@@ -52,6 +52,14 @@ export default {
           more: 'Learn more',
         },
       },
+      form: {
+        placeholders: {
+          firstName: 'Firstname',
+          lastName: 'Lastname',
+          email: 'Email',
+          password: 'Password',
+        }
+      }
     },
   },
 };
