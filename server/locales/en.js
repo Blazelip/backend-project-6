@@ -18,6 +18,10 @@ export default {
           error: 'Failed to register',
           success: 'User registered successfully',
         },
+        update: {
+          error: 'Failed to update',
+          success: 'User is successfully updated',
+        },
       },
       authError: 'Access denied! Please login',
     },
@@ -38,12 +42,19 @@ export default {
       },
       users: {
         id: 'ID',
+        fullName: 'Full name',
         email: 'Email',
         createdAt: 'Created at',
+        actions: 'Actions',
+        action: {
+          change: 'Сhange',
+          delete: 'Delete',
+        },
         new: {
           submit: 'Sign up',
           signUp: 'Sign up',
         },
+        edit: 'User edit',
       },
       welcome: {
         index: {
@@ -58,8 +69,8 @@ export default {
           lastName: 'Lastname',
           email: 'Email',
           password: 'Password',
-        }
-      }
+        },
+      },
     },
   },
 };

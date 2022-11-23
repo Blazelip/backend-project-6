@@ -10,9 +10,33 @@ export default (app) => {
       return reply;
     })
     .get('/users/new', { name: 'newUser' }, (req, reply) => { // Запрос к странице регистрации юзера
-      const user = new app.objection.models.user(); // Не понятна строчка, отдает пустой массив
-      console.log('USER:', user);
-      reply.render('users/new', { user });
+      const user = new app.objection.models.user(); // Создает пустой экземпляр модели user
+      reply.render('users/new', { user });// Рендерит форму создания с данными user
+    })
+    .get('/users/:id/edit', { name: 'editUser' }, async (req, reply) => {
+      const { id } = req.params;
+      const user = await app.objection.models.user.query().findById(id);
+      reply.render('users/edit', { user });
+      return reply;
+    })
+    .patch('/users/:id', { name: 'updateUser' }, async (req, reply) => {
+      const user = new app.objection.models.user();
+      user.$set(req.body.data);
+      const { id } = req.params;
+
+      try {
+        const validUser = await app.objection.models.user.fromJson(req.body.data);
+        console.log('VALID-USER:', validUser);
+        const result = await app.objection.models.user.query().findById(id).patch(validUser);
+        console.log('PATCH-RESULT', result);
+        req.flash('info', i18next.t('flash.users.create.success'));
+        reply.redirect(app.reverse('users'));
+      } catch ({ data }) {
+        req.flash('error', i18next.t('flash.users.create.error'));
+        reply.render('users/edit', { user, errors: data });
+      }
+
+      return reply;
     })
     .post('/users', async (req, reply) => {
       const user = new app.objection.models.user();
@@ -20,14 +44,12 @@ export default (app) => {
 
       try {
         const validUser = await app.objection.models.user.fromJson(req.body.data);
-        console.log('VALID-USER', validUser);
         await app.objection.models.user.query().insert(validUser);
         req.flash('info', i18next.t('flash.users.create.success'));
         reply.redirect(app.reverse('root'));
-      } catch (err) {
-        console.log('ERROR-DATA:', err);
+      } catch ({ data }) {
         req.flash('error', i18next.t('flash.users.create.error'));
-        reply.render('users/new', { user, errors: {} });
+        reply.render('users/new', { user, errors: data });
       }
 
       return reply;

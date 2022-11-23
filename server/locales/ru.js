@@ -18,6 +18,10 @@ export default {
           error: 'Не удалось зарегистрировать',
           success: 'Пользователь успешно зарегистрирован',
         },
+        update: {
+          error: 'Не удалось обновить',
+          success: 'Данные юзера успешно обновлены',
+        },
       },
       authError: 'Доступ запрещён! Пожалуйста, авторизируйтесь.',
     },
@@ -38,12 +42,19 @@ export default {
       },
       users: {
         id: 'ID',
+        fullName: 'Полное имя',
         email: 'Email',
         createdAt: 'Дата создания',
+        actions: 'Действия',
+        action: {
+          change: 'Изменить',
+          delete: 'Удалить',
+        },
         new: {
           submit: 'Сохранить',
           signUp: 'Регистрация',
         },
+        edit: 'Изменение пользователя',
       },
       welcome: {
         index: {
