@@ -10,6 +10,8 @@ import init from '../server/plugin.js';
 describe('requests', () => {
   let app;
 
+  // Инициализирует инстанс сервера и подключает к нему все написанные
+  // настройки и плагины
   beforeAll(async () => {
     app = fastify({
       exposeHeadRoutes: false,
@@ -18,6 +20,7 @@ describe('requests', () => {
     await init(app);
   });
 
+  // Проверяет запрос к главной странице
   it('GET 200', async () => {
     const res = await app.inject({
       method: 'GET',
@@ -26,6 +29,7 @@ describe('requests', () => {
     expect(res.statusCode).toBe(200);
   });
 
+  // Проверяет ответ к несуществующей странице
   it('GET 404', async () => {
     const res = await app.inject({
       method: 'GET',
@@ -34,6 +38,7 @@ describe('requests', () => {
     expect(res.statusCode).toBe(404);
   });
 
+  // Убивает сервер
   afterAll(async () => {
     await app.close();
   });

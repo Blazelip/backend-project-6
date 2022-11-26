@@ -22,8 +22,13 @@ export default {
           error: 'Failed to update',
           success: 'User is successfully updated',
         },
+        delete: {
+          error: 'Failed to delete',
+          success: 'User is successfully deleted',
+        },
       },
       authError: 'Access denied! Please login',
+      noAccess: "You can't edit the user",
     },
     layouts: {
       application: {

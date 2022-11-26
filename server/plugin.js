@@ -79,6 +79,8 @@ const setupLocalization = async () => {
 };
 
 const addHooks = (app) => {
+  // Регистрирует к инстансу сервера хук, который срабатывет перед каждым обработчиком
+  // В инстанс ответа в locals кладется объект, используемый в шаблоне application.pug
   app.addHook('preHandler', async (req, reply) => {
     reply.locals = {
       isAuthenticated: () => req.isAuthenticated(),
