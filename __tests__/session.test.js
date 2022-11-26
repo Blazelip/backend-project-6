@@ -9,7 +9,6 @@ describe('test session', () => {
   let app;
   let knex;
   let users;
-  let models;
 
   beforeAll(async () => {
     app = fastify({
@@ -20,11 +19,7 @@ describe('test session', () => {
     knex = app.objection.knex;
     await knex.migrate.latest();
     users = generateUsers();
-    const { seeds } = users;
-    console.log('SEEEDS:', seeds);
     await fillDataBase(app, users.seeds);
-    const result = await models.user.query();
-    console.log('RESULT-USERS:', result);
   });
 
   it('test sign in / sign out', async () => {
@@ -62,7 +57,6 @@ describe('test session', () => {
   });
 
   afterAll(async () => {
-    await knex.migrate.rollback();
     await app.close();
   });
 });

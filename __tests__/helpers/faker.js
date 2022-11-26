@@ -4,8 +4,8 @@ import encrypt from '../../server/lib/secure.cjs';
 // import { faker } from '@faker-js/faker/locale/de';
 
 const createRandomUser = () => ({
-  firstname: faker.name.firstName(),
-  lastname: faker.name.lastName(),
+  firstName: faker.name.firstName(),
+  lastName: faker.name.lastName(),
   email: faker.internet.email(),
   password: faker.internet.password(),
 });
