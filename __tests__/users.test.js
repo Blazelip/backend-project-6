@@ -85,7 +85,7 @@ describe('test users CRUD', () => {
   it('update', async () => {
     const modifiedLastName = 'Avada-kedavra';
     const creds = users.existing.creator;
-    const cookie = makeLogin(app, creds);
+    const cookie = await makeLogin(app, creds);
     const user = await models.user.query().findOne({ email: creds.email });
 
     const response = await app.inject({
@@ -107,9 +107,8 @@ describe('test users CRUD', () => {
 
   it('delete', async () => {
     const creds = users.existing.forDelete;
-    const cookie = makeLogin(app, creds);
+    const cookie = await makeLogin(app, creds);
     const user = await models.user.query().findOne({ email: creds.email });
-    console.log('USER-DELETE', user);
 
     const response = await app.inject({
       method: 'DELETE',
@@ -118,8 +117,7 @@ describe('test users CRUD', () => {
     });
     expect(response.statusCode).toBe(302);
 
-    const deletedUser = await models.user.query().debug();
-    console.log('LEFT-USERS', deletedUser);
+    const deletedUser = await models.user.query().findById(user.id);
     expect(deletedUser).toBeUndefined();
   });
 
