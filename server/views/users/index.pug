@@ -1,6 +1,8 @@
 extends ../layouts/application.pug
 
 block content
+  - isUsersEmpty = (users) => _.isEmpty(users)
+  
   h1.display-4.fw-bold= t('layouts.application.users')
   .table-responsive
     table.table.table-borderless.table-striped.mt-5.bg-white
@@ -10,7 +12,8 @@ block content
           th= t('views.users.fullName')
           th= t('views.users.email')
           th= t('views.users.createdAt')
-          th= t('views.users.actions')
+          if !isUsersEmpty(users)
+            th= t('views.users.actions')
       tbody
         each user in users
           tr
@@ -18,7 +21,8 @@ block content
             td= `${user.firstName} ${user.lastName}`
             td= user.email
             td= formatDate(user.createdAt)
-            td
-              .d-flex.flex-wrap
-                a.btn.btn-primary.me-1(href=`/users/${user.id}/edit`)= t('views.users.action.change')
-                +buttonTo(`/users/${user.id}`, 'delete')(class="btn btn-danger" value=t('views.users.action.delete'))
+            if !isUsersEmpty(users)
+              td
+                .d-flex.flex-wrap
+                  a.btn.btn-primary.me-1(href=`/users/${user.id}/edit`)= t('views.users.action.change')
+                  +buttonTo(`/users/${user.id}`, 'delete')(class="btn btn-danger" value=t('views.users.action.delete'))

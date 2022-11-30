@@ -5,14 +5,13 @@ import fastify from 'fastify';
 
 import init from '../server/plugin.js';
 import encrypt from '../server/lib/secure.cjs';
-import { generateUsers } from './helpers/faker.js';
-import { fillDataBase, makeLogin } from './helpers/index.js';
+import { prepareData, makeLogin } from './helpers/index.js';
 
 describe('test users CRUD', () => {
   let app;
   let knex;
   let models;
-  let users;
+  let mockData;
   // Получаем данные для теста
 
   beforeAll(async () => {
@@ -28,12 +27,11 @@ describe('test users CRUD', () => {
     // тесты не должны зависеть друг от друга
     // перед каждым тестом выполняем миграции
     // и заполняем БД тестовыми данными
-    users = generateUsers();
   });
 
   beforeEach(async () => {
     await knex.migrate.latest();
-    await fillDataBase(app, users.seeds);
+    mockData = await prepareData(app);
   });
 
   // Идем на список юзеров и получаем 200
@@ -59,7 +57,7 @@ describe('test users CRUD', () => {
   // Отправляем POST на создание нового юзера с параметрами
   it('create', async () => {
     // Получаем креды для создания нового пользователя
-    const params = users.new;
+    const params = mockData.users.new;
     const response = await app.inject({
       method: 'POST',
       url: app.reverse('users'),
@@ -84,7 +82,7 @@ describe('test users CRUD', () => {
 
   it('update', async () => {
     const modifiedLastName = 'Avada-kedavra';
-    const creds = users.existing.creator;
+    const creds = mockData.users.existing.creator;
     const cookie = await makeLogin(app, creds);
     const user = await models.user.query().findOne({ email: creds.email });
 
@@ -106,7 +104,7 @@ describe('test users CRUD', () => {
   });
 
   it('delete', async () => {
-    const creds = users.existing.forDelete;
+    const creds = mockData.users.existing.forDelete;
     const cookie = await makeLogin(app, creds);
     const user = await models.user.query().findOne({ email: creds.email });
 

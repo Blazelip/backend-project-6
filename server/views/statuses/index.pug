@@ -1,0 +1,26 @@
+extends ../layouts/application.pug
+
+block content
+  - isStatusesEmpty = (statuses) => _.isEmpty(statuses)
+  h1.display-4.fw-bold= t('views.statuses.navTitle')
+  a.btn.btn-primary(href=`/statuses/new`)= t('views.statuses.createBtn')
+  .table-responsive
+    table.table.table-borderless.table-striped.mt-5.bg-white
+      thead
+        tr
+          th= t('views.statuses.table.id')
+          th= t('views.statuses.table.title')
+          th= t('views.statuses.table.createdAt')
+          if !isStatusesEmpty(statuses)
+            th= t('views.statuses.table.actions')
+      tbody
+        each status in statuses
+          tr
+            td= status.id
+            td= status.title
+            td= formatDate(status.createdAt)
+            if !isStatusesEmpty(statuses)
+              td
+                .d-flex.flex-wrap
+                  a.btn.btn-primary.me-1(href=`/statuses/${status.id}/edit`)= t('views.statuses.table.action.change')
+                  +buttonTo(`/statuses/${status.id}`, 'delete')(class="btn btn-danger" value=t('views.statuses.table.action.delete'))

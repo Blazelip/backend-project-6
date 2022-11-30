@@ -27,6 +27,21 @@ export default {
           success: 'User is successfully deleted',
         },
       },
+      statuses: {
+        create: {
+          error: 'Failed to create status',
+          success: 'Status created successfully',
+        },
+        update: {
+          error: 'Failed to update status',
+          success: 'Status updated successfully',
+        },
+        delete: {
+          error: 'Failed to delete status',
+          success: 'Status deleted successfully',
+        },
+      },
+
       authError: 'Access denied! Please login',
       noAccess: "You can't edit the user",
     },
@@ -36,6 +51,9 @@ export default {
         signIn: 'Login',
         signUp: 'Register',
         signOut: 'Logout',
+        statuses: {
+          title: 'Statuses',
+        },
       },
     },
     views: {
@@ -74,6 +92,29 @@ export default {
           lastName: 'Lastname',
           email: 'Email',
           password: 'Password',
+          title: 'Title',
+        },
+      },
+      statuses: {
+        navTitle: 'Statuses',
+        createBtn: 'Create status',
+        table: {
+          id: 'ID',
+          title: 'Title',
+          createdAt: 'Created at',
+          actions: 'Actions',
+          action: {
+            change: 'Сhange',
+            delete: 'Delete',
+          },
+        },
+        new: {
+          title: 'Status creation',
+          submit: 'Create',
+        },
+        edit: {
+          title: 'Status edit',
+          submit: 'Edit',
         },
       },
     },

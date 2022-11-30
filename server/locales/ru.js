@@ -27,6 +27,20 @@ export default {
           success: 'Пользователь успешно удален',
         },
       },
+      statuses: {
+        create: {
+          error: 'Ошибка при создании статуса',
+          success: 'Статус успешно создан',
+        },
+        update: {
+          error: 'Ошибка при изменении статуса',
+          success: 'Статус успешно обновлен',
+        },
+        delete: {
+          error: 'Ошибка при удалении статуса',
+          success: 'Статус успешно удален',
+        },
+      },
       authError: 'Доступ запрещён! Пожалуйста, авторизируйтесь.',
       noAccess: 'У вас нет прав для редактирования этого пользователя',
     },
@@ -36,6 +50,9 @@ export default {
         signIn: 'Вход',
         signUp: 'Регистрация',
         signOut: 'Выход',
+        statuses: {
+          title: 'Статусы',
+        },
       },
     },
     views: {
@@ -66,6 +83,37 @@ export default {
           hello: 'Привет от Хекслета!',
           description: 'Практические курсы по программированию',
           more: 'Узнать Больше',
+        },
+      },
+      form: {
+        placeholders: {
+          firstName: 'Имя',
+          lastName: 'Фамилия',
+          email: 'Email',
+          password: 'Пароль',
+          title: 'Наименование',
+        },
+      },
+      statuses: {
+        navTitle: 'Статусы',
+        createBtn: 'Создать статус',
+        table: {
+          id: 'ID',
+          title: 'Наименование',
+          createdAt: 'Дата создания',
+          actions: 'Действия',
+          action: {
+            change: 'Изменить',
+            delete: 'Удалить',
+          },
+        },
+        new: {
+          title: 'Создание статуса',
+          sumbit: 'Создать',
+        },
+        edit: {
+          title: 'Изменение статуса',
+          submit: 'Изменить',
         },
       },
     },

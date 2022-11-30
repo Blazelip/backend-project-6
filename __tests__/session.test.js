@@ -2,13 +2,12 @@
 
 import fastify from 'fastify';
 import init from '../server/plugin.js';
-import { generateUsers } from './helpers/faker.js';
-import { fillDataBase } from './helpers/index.js';
+import { prepareData } from './helpers/index.js';
 
 describe('test session', () => {
   let app;
   let knex;
-  let users;
+  let mockData;
 
   beforeAll(async () => {
     app = fastify({
@@ -18,8 +17,7 @@ describe('test session', () => {
     await init(app);
     knex = app.objection.knex;
     await knex.migrate.latest();
-    users = generateUsers();
-    await fillDataBase(app, users.seeds);
+    mockData = await prepareData(app);
   });
 
   it('test sign in / sign out', async () => {
@@ -33,7 +31,7 @@ describe('test session', () => {
       method: 'POST',
       url: app.reverse('session'),
       payload: {
-        data: users.existing.executor,
+        data: mockData.users.existing.executor,
       },
     });
 
