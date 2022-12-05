@@ -2,7 +2,7 @@ extends ../layouts/application.pug
 
 block content
   - isStatusesEmpty = (statuses) => _.isEmpty(statuses)
-  h1.display-4.fw-bold= t('views.statuses.navTitle')
+  h1.display-4.fw-bold= t('views.statuses.title')
   a.btn.btn-primary(href=`/statuses/new`)= t('views.statuses.createBtn')
   .table-responsive
     table.table.table-borderless.table-striped.mt-5.bg-white

@@ -18,7 +18,7 @@ export default (app) => {
       const currentUser = req.user;
 
       if (userId !== currentUser.id) {
-        req.flash('error', i18next.t('flash.noAccess'));
+        req.flash('error', i18next.t('flash.users.upDate.noAccess'));
         return reply.redirect(app.reverse('users'));
       }
 
@@ -47,7 +47,7 @@ export default (app) => {
       const currentUser = req.user;
 
       if (userId !== currentUser.id) {
-        req.flash('error', i18next.t('flash.noAccess'));
+        req.flash('error', i18next.t('flash.users.update.noAccess'));
         return reply.redirect(app.reverse('users'));
       }
 

@@ -21,6 +21,7 @@ export default {
         update: {
           error: 'Failed to update',
           success: 'User is successfully updated',
+          noAccess: "You don't have rights to edit the user",
         },
         delete: {
           error: 'Failed to delete',
@@ -41,9 +42,22 @@ export default {
           success: 'Status deleted successfully',
         },
       },
-
+      tasks: {
+        create: {
+          error: 'Failed to create task',
+          success: 'Task created successfully',
+        },
+        update: {
+          error: 'Failed to update task',
+          success: 'Task updated successfully',
+        },
+        delete: {
+          error: 'Failed to delete task',
+          success: 'Task deleted successfully',
+          noAccess: "You don't have rights to delete the task",
+        },
+      },
       authError: 'Access denied! Please login',
-      noAccess: "You can't edit the user",
     },
     layouts: {
       application: {
@@ -51,8 +65,9 @@ export default {
         signIn: 'Login',
         signUp: 'Register',
         signOut: 'Logout',
-        statuses: {
-          title: 'Statuses',
+        nav: {
+          statuses: 'Statuses',
+          tasks: 'Tasks',
         },
       },
     },
@@ -93,10 +108,14 @@ export default {
           email: 'Email',
           password: 'Password',
           title: 'Title',
+          name: 'Name',
+          description: 'Description',
+          statusId: 'Status',
+          executorId: 'Executor',
         },
       },
       statuses: {
-        navTitle: 'Statuses',
+        title: 'Statuses',
         createBtn: 'Create status',
         table: {
           id: 'ID',
@@ -115,6 +134,40 @@ export default {
         edit: {
           title: 'Status edit',
           submit: 'Edit',
+        },
+      },
+      tasks: {
+        title: 'Tasks',
+        createBtn: 'Create task',
+        table: {
+          id: 'ID',
+          name: 'Name',
+          status: 'Status',
+          author: 'Author',
+          executor: 'Executor',
+          createdAt: 'Created at',
+          actions: 'Actions',
+          action: {
+            change: 'Edit',
+            delete: 'Delete',
+          },
+        },
+        new: {
+          title: 'Task creation',
+          submit: 'Create',
+        },
+        edit: {
+          title: 'Task edit',
+          submit: 'Edit',
+        },
+        page: {
+          creator: 'Author',
+          executor: 'Executor',
+          createdAt: 'Created at',
+          action: {
+            change: 'Edit',
+            delete: 'Delete',
+          },
         },
       },
     },

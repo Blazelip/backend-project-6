@@ -21,6 +21,7 @@ export default {
         update: {
           error: 'Не удалось обновить',
           success: 'Данные юзера успешно обновлены',
+          noAccess: 'У вас нет прав для редактирования этого пользователя',
         },
         delete: {
           error: 'Не удалось удалить пользователя',
@@ -41,8 +42,22 @@ export default {
           success: 'Статус успешно удален',
         },
       },
+      tasks: {
+        create: {
+          error: 'Ошибка при создании задачи',
+          success: 'Задача успешно создана',
+        },
+        update: {
+          error: 'Ошибка при редактировании задачи',
+          success: 'Задача успешно отредактирована',
+        },
+        delete: {
+          error: 'Ошибка при удалении задачи',
+          success: 'Задача успешно удалена',
+          noAccess: 'У вас нет прав для удаления этой задачи',
+        },
+      },
       authError: 'Доступ запрещён! Пожалуйста, авторизируйтесь.',
-      noAccess: 'У вас нет прав для редактирования этого пользователя',
     },
     layouts: {
       application: {
@@ -92,10 +107,14 @@ export default {
           email: 'Email',
           password: 'Пароль',
           title: 'Наименование',
+          name: 'Наименование',
+          description: 'Описание',
+          statusId: 'Статус',
+          executorId: 'Исполнитель',
         },
       },
       statuses: {
-        navTitle: 'Статусы',
+        title: 'Статусы',
         createBtn: 'Создать статус',
         table: {
           id: 'ID',
@@ -114,6 +133,40 @@ export default {
         edit: {
           title: 'Изменение статуса',
           submit: 'Изменить',
+        },
+      },
+      tasks: {
+        title: 'Задачи',
+        createBtn: 'Создать задачу',
+        table: {
+          id: 'ID',
+          name: 'Наименование',
+          status: 'Статус',
+          author: 'Автор',
+          executor: 'Исполнитель',
+          createdAt: 'Дата создания',
+          actions: 'Действия',
+          action: {
+            change: 'Редактировать',
+            delete: 'Удалить',
+          },
+        },
+        new: {
+          title: 'Создание задачи',
+          submit: 'Создать',
+        },
+        edit: {
+          title: 'Редактирование задачи',
+          submit: 'Редактировать',
+        },
+        page: {
+          author: 'Автор',
+          executor: 'Исполнитель',
+          createdAt: 'Дата создания',
+          action: {
+            change: 'Изменить',
+            delete: 'Удалить',
+          },
         },
       },
     },
