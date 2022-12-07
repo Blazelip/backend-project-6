@@ -26,6 +26,8 @@ export default {
         delete: {
           error: 'Failed to delete',
           success: 'User is successfully deleted',
+          noAccess: "You don't have rights to delete the user",
+          noRemove: 'Impossible to delete user, having tasks',
         },
       },
       statuses: {
@@ -40,6 +42,22 @@ export default {
         delete: {
           error: 'Failed to delete status',
           success: 'Status deleted successfully',
+          noAccess: 'Impossible to delete status, used in tasks',
+        },
+      },
+      labels: {
+        create: {
+          error: 'Failed to create label',
+          success: 'Label created successfully',
+        },
+        update: {
+          error: 'Failed to update label',
+          success: 'Label updated successfully',
+        },
+        delete: {
+          error: 'Failed to delete label',
+          success: 'Label deleted successfully',
+          noAccess: 'Impossible to delete label, used in tasks',
         },
       },
       tasks: {
@@ -67,6 +85,7 @@ export default {
         signOut: 'Logout',
         nav: {
           statuses: 'Statuses',
+          labels: 'Labels',
           tasks: 'Tasks',
         },
       },
@@ -112,6 +131,7 @@ export default {
           description: 'Description',
           statusId: 'Status',
           executorId: 'Executor',
+          labelId: 'Labels',
         },
       },
       statuses: {
@@ -133,6 +153,28 @@ export default {
         },
         edit: {
           title: 'Status edit',
+          submit: 'Edit',
+        },
+      },
+      labels: {
+        title: 'Labels',
+        createBtn: 'Create label',
+        table: {
+          id: 'ID',
+          name: 'Title',
+          createdAt: 'Created at',
+          actions: 'Actions',
+          action: {
+            change: 'Сhange',
+            delete: 'Delete',
+          },
+        },
+        new: {
+          title: 'Label creation',
+          submit: 'Create',
+        },
+        edit: {
+          title: 'Label edit',
           submit: 'Edit',
         },
       },

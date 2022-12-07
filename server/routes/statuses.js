@@ -33,6 +33,7 @@ export default (app) => {
     .get('/statuses/:id/edit', { name: 'editStatus', preValidation: app.authenticate }, async (req, reply) => {
       const statusId = Number(req.params.id);
       const status = await app.objection.models.status.query().findById(statusId);
+
       reply.render('statuses/edit', { status });
       return reply;
     })
@@ -54,15 +55,22 @@ export default (app) => {
     .delete('/statuses/:id', { name: 'deleteStatus', preValidation: app.authenticate }, async (req, reply) => {
       const statusId = Number(req.params.id);
 
+      const status = await app.objection.models.status.query().findById(statusId);
+      const statusTasks = await status.$relatedQuery('tasks');
+
+      if (statusTasks.length) {
+        req.flash('error', i18next.t('flash.statuses.delete.noAccess'));
+        return reply.redirect(app.reverse('getStatuses'));
+      }
+
       try {
         await app.objection.models.status.query().deleteById(statusId);
         req.flash('info', i18next.t('flash.statuses.delete.success'));
-        reply.redirect(app.reverse('getStatuses'));
       } catch (err) {
         req.flash('error', i18next.t('flash.statuses.delete.error'));
-        reply.redirect(app.reverse('getStatuses'));
       }
 
+      reply.redirect(app.reverse('getStatuses'));
       return reply;
     });
 };

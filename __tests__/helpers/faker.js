@@ -12,6 +12,10 @@ const DATA_GENERATORS = {
   status: () => ({
     title: faker.word.noun(),
   }),
+  task: () => ({
+    name: faker.word.noun(),
+    description: faker.lorem.paragraph(),
+  }),
 };
 
 const generateData = (type, length = 1) => {
@@ -56,4 +60,21 @@ const generateStatuses = () => {
   };
 };
 
-export { generateUsers, generateStatuses };
+const generateTasks = (users, statuses) => {
+  const [creator, executor] = users;
+  const [status] = statuses;
+
+  const formTask = (task) => ({
+    ...task,
+    creatorId: creator.id,
+    executorId: executor.id,
+    statusId: status.id,
+  });
+
+  const newTasks = generateData('task').map(formTask);
+  const existingTasks = generateData('task').map(formTask);
+
+  return { new: newTasks[0], existing: existingTasks[0], seeds: existingTasks };
+};
+
+export { generateUsers, generateStatuses, generateTasks };

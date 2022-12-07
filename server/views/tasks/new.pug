@@ -9,4 +9,5 @@ block content
           +textarea(task, 'description', errors)(rows='3')
           +select(task, 'statusId', errors, statuses)
           +select(task, 'executorId', errors, users)
+          +select(task, 'labelId', errors, labels, true)
           +submit(task)(value=t('views.tasks.new.submit'))

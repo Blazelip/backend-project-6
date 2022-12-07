@@ -22,7 +22,7 @@ describe('test users CRUD', () => {
     await init(app);
     knex = app.objection.knex;
     models = app.objection.models;
-
+    await knex.migrate.latest();
     // TODO: пока один раз перед тестами
     // тесты не должны зависеть друг от друга
     // перед каждым тестом выполняем миграции
@@ -30,7 +30,6 @@ describe('test users CRUD', () => {
   });
 
   beforeEach(async () => {
-    await knex.migrate.latest();
     mockData = await prepareData(app);
   });
 

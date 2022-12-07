@@ -48,7 +48,7 @@ mixin textarea(entity, propertyName, errors = {})
     if !_.isEmpty(propertyErrors)
       .invalid-feedback= propertyErrors.map(({ message }) => message).join('. ')
 
-mixin select(entity, propertyName, errors = {}, items)
+mixin select(entity, propertyName, errors = {}, items, isMultiple = false)
   - propertyErrors = _.get(errors, propertyName)
   - classLine = 'form-control' + (_.isEmpty(propertyErrors) ? '' : ' is-invalid')
   - inputId = getInputId(propertyName)
@@ -60,13 +60,22 @@ mixin select(entity, propertyName, errors = {}, items)
       id= inputId
       name=getInputName(propertyName)
       class=classLine
+      multiple= isMultiple
     )&attributes(attributes)
-      option
-      each item in items
-        - isSelected = item.id === entity[propertyName]
-        if propertyName === 'statusId'
-          option(value= item.id selected= isSelected)= item.title
-        else if propertyName === 'executorId'
-          option(value= item.id selected= isSelected)= `${item.firstName} ${item.lastName}`
+      if isMultiple 
+        each item in items
+          - isSelected = item.id === entity[propertyName]
+          if propertyName === 'statusId'
+            option(value= item.id selected= isSelected)= item.title
+          else if propertyName === 'executorId'
+            option(value= item.id selected= isSelected)= `${item.firstName} ${item.lastName}`
+      else
+        option
+        each item in items
+          - isSelected = item.id === entity[propertyName]
+          if propertyName === 'statusId'
+            option(value= item.id selected= isSelected)= item.title
+          else if propertyName === 'executorId'
+            option(value= item.id selected= isSelected)= `${item.firstName} ${item.lastName}`
     if !_.isEmpty(propertyErrors)
       .invalid-feedback= propertyErrors.map(({ message }) => message).join('. ')

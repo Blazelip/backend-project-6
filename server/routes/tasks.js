@@ -5,15 +5,20 @@ import i18next from 'i18next';
 export default (app) => {
   app
     .get('/tasks', { name: 'getTasks', preValidation: app.authenticate }, async (req, reply) => {
-      const tasks = await app.objection.models.task.query().withGraphJoined('[creator, executor, status]');
+      const tasks = await app.objection.models.task.query().withGraphJoined('[creator, executor, status, labels]');
+      console.log("🚀 ~ file: tasks.js:9 ~ .get ~ tasks", tasks);
       reply.render('tasks/index', { tasks });
       return reply;
     })
     .get('/tasks/new', { name: 'newTask', preValidation: app.authenticate }, async (req, reply) => {
-      const task = await new app.objection.models.task();
+      const task = new app.objection.models.task();
       const statuses = await app.objection.models.status.query();
       const users = await app.objection.models.user.query();
-      reply.render('tasks/new', { task, statuses, users });
+      const labels = await app.objection.models.label.query();
+      console.log("🚀 ~ file: tasks.js:18 ~ .get ~ labels", labels);
+      reply.render('tasks/new', {
+        task, statuses, users, labels,
+      });
       return reply;
     })
     .post('/tasks', { name: 'createTask', preValidation: app.authenticate }, async (req, reply) => {
@@ -62,7 +67,6 @@ export default (app) => {
     .get('/tasks/:id/edit', { name: 'editTask', preValidation: app.authenticate }, async (req, reply) => {
       const taskId = Number(req.params.id);
       const task = await app.objection.models.task.query().findById(taskId);
-      console.log("🚀 ~ file: tasks.js:65 ~ .get ~ task", task)
       const statuses = await app.objection.models.status.query();
       const users = await app.objection.models.user.query();
 

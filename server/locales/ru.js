@@ -26,6 +26,8 @@ export default {
         delete: {
           error: 'Не удалось удалить пользователя',
           success: 'Пользователь успешно удален',
+          noAccess: 'У вас нет прав для удаления этого пользователя',
+          noRemove: 'Нельзя удалить пользователя, имеющего задачи',
         },
       },
       statuses: {
@@ -40,6 +42,22 @@ export default {
         delete: {
           error: 'Ошибка при удалении статуса',
           success: 'Статус успешно удален',
+          noAccess: 'Нельзя удалить статус, используемый в задачах',
+        },
+      },
+      labels: {
+        create: {
+          error: 'Ошибка при создании метки',
+          success: 'Метка успешно создана',
+        },
+        update: {
+          error: 'Ошибка при изменении метки',
+          success: 'Метка успешно обновлена',
+        },
+        delete: {
+          error: 'Ошибка при удалении метки',
+          success: 'Метка успешно удалена',
+          noAccess: 'Нельзя удалить метку, используемую в задачах',
         },
       },
       tasks: {
@@ -67,6 +85,8 @@ export default {
         signOut: 'Выход',
         statuses: {
           title: 'Статусы',
+          labels: 'Метки',
+          tasks: 'Задачи',
         },
       },
     },
@@ -111,6 +131,7 @@ export default {
           description: 'Описание',
           statusId: 'Статус',
           executorId: 'Исполнитель',
+          labelId: 'Метки',
         },
       },
       statuses: {
@@ -133,6 +154,28 @@ export default {
         edit: {
           title: 'Изменение статуса',
           submit: 'Изменить',
+        },
+      },
+      labels: {
+        title: 'Метки',
+        createBtn: 'Создать метку',
+        table: {
+          id: 'ID',
+          name: 'Наименование',
+          createdAt: 'Дата создания',
+          actions: 'Действия',
+          action: {
+            change: 'Изменить',
+            delete: 'Удалить',
+          },
+        },
+        new: {
+          title: 'Создание метки',
+          submit: 'Создать',
+        },
+        edit: {
+          title: 'Редактирование метки',
+          submit: 'Редактировать',
         },
       },
       tasks: {

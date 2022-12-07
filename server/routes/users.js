@@ -18,7 +18,7 @@ export default (app) => {
       const currentUser = req.user;
 
       if (userId !== currentUser.id) {
-        req.flash('error', i18next.t('flash.users.upDate.noAccess'));
+        req.flash('error', i18next.t('flash.users.update.noAccess'));
         return reply.redirect(app.reverse('users'));
       }
 
@@ -47,7 +47,15 @@ export default (app) => {
       const currentUser = req.user;
 
       if (userId !== currentUser.id) {
-        req.flash('error', i18next.t('flash.users.update.noAccess'));
+        req.flash('error', i18next.t('flash.users.delete.noAccess'));
+        return reply.redirect(app.reverse('users'));
+      }
+
+      const user = await app.objection.models.user.query().findById(userId);
+      const userTasks = await user.$relatedQuery('tasks');
+
+      if (userTasks.length) {
+        req.flash('error', i18next.t('flash.users.delete.noRemove'));
         return reply.redirect(app.reverse('users'));
       }
 
