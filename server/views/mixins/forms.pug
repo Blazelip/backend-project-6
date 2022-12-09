@@ -52,6 +52,7 @@ mixin select(entity, propertyName, errors = {}, items, isMultiple = false)
   - propertyErrors = _.get(errors, propertyName)
   - classLine = 'form-control' + (_.isEmpty(propertyErrors) ? '' : ' is-invalid')
   - inputId = getInputId(propertyName)
+  - selectedOptions = entity[propertyName] ? [entity[propertyName]].flat().map((item) => item.id ? Number(item.id) : Number(item)) : []
   .mb-3(class=(errors[propertyName] && 'has-danger'))
     label(
       for= inputId
@@ -62,20 +63,13 @@ mixin select(entity, propertyName, errors = {}, items, isMultiple = false)
       class=classLine
       multiple= isMultiple
     )&attributes(attributes)
-      if isMultiple 
-        each item in items
-          - isSelected = item.id === entity[propertyName]
-          if propertyName === 'statusId'
-            option(value= item.id selected= isSelected)= item.title
-          else if propertyName === 'executorId'
-            option(value= item.id selected= isSelected)= `${item.firstName} ${item.lastName}`
-      else
+      if !isMultiple
         option
-        each item in items
-          - isSelected = item.id === entity[propertyName]
-          if propertyName === 'statusId'
-            option(value= item.id selected= isSelected)= item.title
-          else if propertyName === 'executorId'
-            option(value= item.id selected= isSelected)= `${item.firstName} ${item.lastName}`
+      each item in items
+        - isSelected = _.includes(selectedOptions, item.id)
+        if propertyName === 'executorId'
+          option(value= item.id selected= isSelected)= `${item.firstName} ${item.lastName}`
+        else
+          option(value= item.id selected= isSelected)= item.name
     if !_.isEmpty(propertyErrors)
       .invalid-feedback= propertyErrors.map(({ message }) => message).join('. ')

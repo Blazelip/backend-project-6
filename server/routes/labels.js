@@ -57,7 +57,6 @@ export default (app) => {
 
       const label = await app.objection.models.label.query().findById(labelId);
       const labelTasks = await label.$relatedQuery('tasks');
-      console.log("🚀 ~ file: labels.js:60 ~ .delete ~ labelTasks", labelTasks);
 
       if (labelTasks.length) {
         req.flash('error', i18next.t('flash.labels.delete.noAccess'));

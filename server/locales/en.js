@@ -126,12 +126,11 @@ export default {
           lastName: 'Lastname',
           email: 'Email',
           password: 'Password',
-          title: 'Title',
           name: 'Name',
           description: 'Description',
           statusId: 'Status',
           executorId: 'Executor',
-          labelId: 'Labels',
+          labels: 'Labels',
         },
       },
       statuses: {
@@ -139,7 +138,7 @@ export default {
         createBtn: 'Create status',
         table: {
           id: 'ID',
-          title: 'Title',
+          name: 'Title',
           createdAt: 'Created at',
           actions: 'Actions',
           action: {

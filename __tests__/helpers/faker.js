@@ -10,7 +10,10 @@ const DATA_GENERATORS = {
     password: faker.internet.password(),
   }),
   status: () => ({
-    title: faker.word.noun(),
+    name: faker.word.noun(),
+  }),
+  label: () => ({
+    name: faker.word.noun(),
   }),
   task: () => ({
     name: faker.word.noun(),
@@ -60,6 +63,19 @@ const generateStatuses = () => {
   };
 };
 
+const generateLabels = () => {
+  const newLabel = generateData('label', 1);
+  const labels = generateData('label', 2);
+  return {
+    new: newLabel[0],
+    existing: {
+      update: labels[0],
+      delete: labels[1],
+    },
+    seeds: labels,
+  };
+};
+
 const generateTasks = (users, statuses) => {
   const [creator, executor] = users;
   const [status] = statuses;
@@ -77,4 +93,6 @@ const generateTasks = (users, statuses) => {
   return { new: newTasks[0], existing: existingTasks[0], seeds: existingTasks };
 };
 
-export { generateUsers, generateStatuses, generateTasks };
+export {
+  generateUsers, generateStatuses, generateTasks, generateLabels,
+};

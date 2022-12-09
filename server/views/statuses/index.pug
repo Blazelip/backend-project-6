@@ -9,7 +9,7 @@ block content
       thead
         tr
           th= t('views.statuses.table.id')
-          th= t('views.statuses.table.title')
+          th= t('views.statuses.table.name')
           th= t('views.statuses.table.createdAt')
           if !isStatusesEmpty(statuses)
             th= t('views.statuses.table.actions')
@@ -17,7 +17,7 @@ block content
         each status in statuses
           tr
             td= status.id
-            td= status.title
+            td= status.name
             td= formatDate(status.createdAt)
             if !isStatusesEmpty(statuses)
               td

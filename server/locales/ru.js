@@ -126,12 +126,11 @@ export default {
           lastName: 'Фамилия',
           email: 'Email',
           password: 'Пароль',
-          title: 'Наименование',
           name: 'Наименование',
           description: 'Описание',
           statusId: 'Статус',
           executorId: 'Исполнитель',
-          labelId: 'Метки',
+          labels: 'Метки',
         },
       },
       statuses: {

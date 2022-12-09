@@ -1,14 +1,18 @@
 // @ts-check
-import { generateUsers, generateStatuses, generateTasks } from './faker.js';
+import {
+  generateUsers, generateStatuses, generateTasks, generateLabels,
+} from './faker.js';
 // TODO: использовать для фикстур https://github.com/viglucci/simple-knex-fixtures
 
 const prepareData = async (app) => {
   const { knex } = app.objection;
   const userMocks = generateUsers();
   const statusesMocks = generateStatuses();
+  const labelsMocks = generateLabels();
   // получаем данные из фикстур и заполняем БД
   await knex('users').insert(userMocks.seeds);
   await knex('statuses').insert(statusesMocks.seeds);
+  await knex('labels').insert(labelsMocks.seeds);
 
   const users = await knex('users');
   const statuses = await knex('statuses');
@@ -19,6 +23,7 @@ const prepareData = async (app) => {
     users: userMocks,
     statuses: statusesMocks,
     tasks: tasksMocks,
+    labels: labelsMocks,
   };
 };
 
