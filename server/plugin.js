@@ -118,14 +118,20 @@ const registerPlugins = async (app) => {
     },
   });
 
+  // @ts-ignore
   fastifyPassport.registerUserDeserializer(
     (user) => app.objection.models.user.query().findById(user.id),
   );
+  // @ts-ignore
   fastifyPassport.registerUserSerializer((user) => Promise.resolve(user));
+  // @ts-ignore
   fastifyPassport.use(new FormStrategy('form', app));
+  // @ts-ignore
   await app.register(fastifyPassport.initialize());
+  // @ts-ignore
   await app.register(fastifyPassport.secureSession());
   await app.decorate('fp', fastifyPassport);
+  // @ts-ignore
   app.decorate('authenticate', (...args) => fastifyPassport.authenticate(
     'form',
     {
