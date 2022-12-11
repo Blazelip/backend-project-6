@@ -24,14 +24,14 @@ block content
     table.table.table-borderless.table-striped.mt-5.bg-white
       thead
         tr
-          th= t('views.tasks.table.id')
-          th= t('views.tasks.table.name')
-          th= t('views.tasks.table.status')
-          th= t('views.tasks.table.author')
-          th= t('views.tasks.table.executor')
-          th= t('views.tasks.table.createdAt')
+          th.py-3= t('views.tasks.table.id')
+          th.py-3= t('views.tasks.table.name')
+          th.py-3= t('views.tasks.table.status')
+          th.py-3= t('views.tasks.table.author')
+          th.py-3= t('views.tasks.table.executor')
+          th.py-3= t('views.tasks.table.createdAt')
           if !isTasksEmpty(tasks)
-            th= t('views.tasks.table.actions')
+            th
       tbody
         each task in tasks
           tr 

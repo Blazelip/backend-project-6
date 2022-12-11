@@ -10,11 +10,11 @@ block content
     table.table.table-borderless.table-striped.mt-5.bg-white
       thead
         tr
-          th= t('views.labels.table.id')
-          th= t('views.labels.table.name')
-          th= t('views.labels.table.createdAt')
+          th.py-3= t('views.labels.table.id')
+          th.py-3= t('views.labels.table.name')
+          th.py-3= t('views.labels.table.createdAt')
           if !isLabelsEmpty(labels)
-            th= t('views.labels.table.actions')
+            th.py-3
       tbody
         each label in labels
           tr

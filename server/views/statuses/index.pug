@@ -10,11 +10,11 @@ block content
     table.table.table-borderless.table-striped.mt-5.bg-white
       thead
         tr
-          th= t('views.statuses.table.id')
-          th= t('views.statuses.table.name')
-          th= t('views.statuses.table.createdAt')
+          th.py-3= t('views.statuses.table.id')
+          th.py-3= t('views.statuses.table.name')
+          th.py-3= t('views.statuses.table.createdAt')
           if !isStatusesEmpty(statuses)
-            th= t('views.statuses.table.actions')
+            th.py-3
       tbody
         each status in statuses
           tr

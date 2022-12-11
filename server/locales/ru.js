@@ -2,7 +2,7 @@
 
 export default {
   translation: {
-    appName: 'Fastify Шаблон',
+    appName: 'Менеджер задач',
     flash: {
       session: {
         create: {
@@ -67,7 +67,7 @@ export default {
         },
         update: {
           error: 'Ошибка при редактировании задачи',
-          success: 'Задача успешно отредактирована',
+          success: 'Задача успешно изменена',
         },
         delete: {
           error: 'Ошибка при удалении задачи',
@@ -83,8 +83,8 @@ export default {
         signIn: 'Вход',
         signUp: 'Регистрация',
         signOut: 'Выход',
-        statuses: {
-          title: 'Статусы',
+        nav: {
+          statuses: 'Статусы',
           labels: 'Метки',
           tasks: 'Задачи',
         },
@@ -145,7 +145,7 @@ export default {
         createBtn: 'Создать статус',
         table: {
           id: 'ID',
-          title: 'Наименование',
+          name: 'Наименование',
           createdAt: 'Дата создания',
           actions: 'Действия',
           action: {
@@ -155,7 +155,7 @@ export default {
         },
         new: {
           title: 'Создание статуса',
-          sumbit: 'Создать',
+          submit: 'Создать',
         },
         edit: {
           title: 'Изменение статуса',
@@ -180,8 +180,8 @@ export default {
           submit: 'Создать',
         },
         edit: {
-          title: 'Редактирование метки',
-          submit: 'Редактировать',
+          title: 'Изменение метки',
+          submit: 'Изменить',
         },
       },
       tasks: {
@@ -196,7 +196,7 @@ export default {
           createdAt: 'Дата создания',
           actions: 'Действия',
           action: {
-            change: 'Редактировать',
+            change: 'Изменить',
             delete: 'Удалить',
           },
         },
@@ -205,11 +205,11 @@ export default {
           submit: 'Создать',
         },
         edit: {
-          title: 'Редактирование задачи',
-          submit: 'Редактировать',
+          title: 'Изменение задачи',
+          submit: 'Изменить',
         },
         page: {
-          author: 'Автор',
+          creator: 'Автор',
           executor: 'Исполнитель',
           createdAt: 'Дата создания',
           action: {
