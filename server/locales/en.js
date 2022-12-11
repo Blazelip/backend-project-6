@@ -132,6 +132,13 @@ export default {
           executorId: 'Executor',
           labels: 'Labels',
         },
+        filter: {
+          status: 'Status',
+          executor: 'Executor',
+          label: 'Label',
+          isCreatorUser: 'Only my tasks',
+          submit: 'Show',
+        },
       },
       statuses: {
         title: 'Statuses',

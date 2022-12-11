@@ -132,6 +132,13 @@ export default {
           executorId: 'Исполнитель',
           labels: 'Метки',
         },
+        filter: {
+          status: 'Статус',
+          executor: 'Исполнитель',
+          label: 'Метка',
+          isCreatorUser: 'Только мои задачи',
+          submit: 'Показать',
+        },
       },
       statuses: {
         title: 'Статусы',

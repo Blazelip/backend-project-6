@@ -1,6 +1,7 @@
 - const getInputName = (property) => `data[${[property]}]`
 - const getInputId = (property) => `data_${property}`
 - const inputLabel = (property) => t(`views.form.placeholders.${property}`)
+- const filterLabel = (property) => t(`views.form.filter.${property}`)
 
 mixin formFor(entity = null)
   form&attributes(attributes)
@@ -73,3 +74,35 @@ mixin select(entity, propertyName, errors = {}, items, isMultiple = false)
           option(value= item.id selected= isSelected)= item.name
     if !_.isEmpty(propertyErrors)
       .invalid-feedback= propertyErrors.map(({ message }) => message).join('. ')
+
+mixin filterSelect(propertyName, items = [])
+  - inputId = getInputId(propertyName)
+  .mb-3.input-group
+    label(
+      class='input-group-text'
+      for= inputId
+    )= filterLabel(propertyName)
+    select(
+      id= inputId
+      name= propertyName
+      class='form-select'
+    )&attributes(attributes)
+      option
+      each item in items
+        if propertyName === 'executor'
+          option(value= item.id)= `${item.firstName} ${item.lastName}`
+        else
+          option(value= item.id)= item.name
+
+mixin checkbox(propertyName)
+  - inputId = getInputId(propertyName)
+  .mb-3.form-check
+    input(
+      id= inputId
+      name= propertyName
+      class='form-check-input'
+      type='checkbox'
+    )&attributes(attributes)
+    label(
+      for= inputId
+    )= filterLabel(propertyName)

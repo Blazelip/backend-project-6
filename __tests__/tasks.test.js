@@ -60,7 +60,6 @@ describe('Tasks CRUD', () => {
 
   it('createTask', async () => {
     const params = mockData.tasks.new;
-    console.log("🚀 ~ file: tasks.test.js:63 ~ it ~ params", params);
 
     const response = await app.inject({
       method: 'POST',
@@ -73,7 +72,6 @@ describe('Tasks CRUD', () => {
 
     expect(response.statusCode).toBe(302);
     const task = await models.task.query().findOne({ name: params.name });
-    console.log("🚀 ~ file: tasks.test.js:76 ~ it ~ task", task)
     expect(task).toMatchObject(params);
   });
 

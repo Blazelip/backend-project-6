@@ -1,19 +1,43 @@
 // @ts-check
-
 import i18next from 'i18next';
 
 export default (app) => {
   app
     .get('/tasks', { name: 'getTasks', preValidation: app.authenticate }, async (req, reply) => {
-      const tasks = await app.objection.models.task.query().withGraphJoined('[creator, executor, status]');
-      reply.render('tasks/index', { tasks });
+      const { id } = req.user;
+      const {
+        executor, status, label, isCreatorUser,
+      } = req.query;
+
+      const tasksQuery = app.objection.models.task.query().withGraphJoined('[creator, executor, status, labels]');
+
+      tasksQuery.skipUndefined().modify('filterExecutor', executor || undefined);
+      tasksQuery.skipUndefined().modify('filterStatus', status || undefined);
+      tasksQuery.skipUndefined().modify('filterLabel', label || undefined);
+
+      if (isCreatorUser === 'on') {
+        tasksQuery.skipUndefined().modify('filterCreator', id || undefined);
+      }
+
+      const [tasks, users, statuses, labels] = await Promise.all([
+        tasksQuery,
+        app.objection.models.user.query(),
+        app.objection.models.status.query(),
+        app.objection.models.label.query(),
+      ]);
+
+      reply.render('tasks/index', {
+        tasks, statuses, users, labels,
+      });
       return reply;
     })
     .get('/tasks/new', { name: 'newTask', preValidation: app.authenticate }, async (req, reply) => {
       const task = new app.objection.models.task();
-      const statuses = await app.objection.models.status.query();
-      const users = await app.objection.models.user.query();
-      const labels = await app.objection.models.label.query();
+      const [users, statuses, labels] = await Promise.all([
+        app.objection.models.user.query(),
+        app.objection.models.status.query(),
+        app.objection.models.label.query(),
+      ]);
       reply.render('tasks/new', {
         task, statuses, users, labels,
       });
@@ -47,9 +71,11 @@ export default (app) => {
         req.flash('info', i18next.t('flash.tasks.create.success'));
         reply.redirect(app.reverse('getTasks'));
       } catch ({ data }) {
-        const statuses = await app.objection.models.status.query();
-        const users = await app.objection.models.user.query();
-        const labels = await app.objection.models.label.query();
+        const [users, statuses, labels] = await Promise.all([
+          app.objection.models.user.query(),
+          app.objection.models.status.query(),
+          app.objection.models.label.query(),
+        ]);
         req.flash('error', i18next.t('flash.tasks.create.error'));
         reply.render('tasks/new', {
           task, statuses, users, labels, errors: data,
@@ -68,9 +94,11 @@ export default (app) => {
     .get('/tasks/:id/edit', { name: 'editTask', preValidation: app.authenticate }, async (req, reply) => {
       const taskId = Number(req.params.id);
       const task = await app.objection.models.task.query().withGraphJoined('labels').findById(taskId);
-      const statuses = await app.objection.models.status.query();
-      const users = await app.objection.models.user.query();
-      const labels = await app.objection.models.label.query();
+      const [users, statuses, labels] = await Promise.all([
+        app.objection.models.user.query(),
+        app.objection.models.status.query(),
+        app.objection.models.label.query(),
+      ]);
 
       reply.render('tasks/edit', {
         task, statuses, users, labels,
@@ -110,9 +138,11 @@ export default (app) => {
         req.flash('info', i18next.t('flash.tasks.update.success'));
         reply.redirect(app.reverse('getTasks'));
       } catch ({ data }) {
-        const statuses = await app.objection.models.status.query();
-        const users = await app.objection.models.user.query();
-        const labels = await app.objection.models.label.query();
+        const [users, statuses, labels] = await Promise.all([
+          app.objection.models.user.query(),
+          app.objection.models.status.query(),
+          app.objection.models.label.query(),
+        ]);
         req.flash('error', i18next.t('flash.tasks.update.error'));
         reply.render('tasks/edit', {
           task, statuses, users, labels, errors: data,
