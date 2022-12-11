@@ -1,20 +1,23 @@
-# fastify-nodejs-application
-
 [![Actions Status](https://github.com/Blazelip/backend-project-6/workflows/hexlet-check/badge.svg)](https://github.com/Blazelip/backend-project-6/actions)
 
-## Setup
+[![Actions Status](https://github.com/Blazelip/backend-project-4/actions/workflows/personal-check.yml/badge.svg)](https://github.com/Blazelip/backend-project-6/actions)
 
-```bash
-make setup
-```
+[![Maintainability](https://api.codeclimate.com/v1/badges/00182bbabf071b072af7/maintainability)](https://codeclimate.com/github/Blazelip/backend-project-6/maintainability)
+
+[![Test Coverage](https://api.codeclimate.com/v1/badges/00182bbabf071b072af7/test_coverage)](https://codeclimate.com/github/Blazelip/backend-project-6/test_coverage)
+
+### Demonstration webpage:
+https://backend-project-6-production.up.railway.app
+
+## Description
+Fourth studying project created with Node.js, Pug and bootstrap.
+Manage users, their tasks, task labels and task statuses. 
+Project uses sqlite as database.
+
+## Setup
+- Clone this repository
+- Next, enter the command **`make setup`**
 
 ## Run
-
-```bash
-$ make start
-# Open localhost:6000
-```
-
-BoilerPlate
-
-https://backend-project-6-production.up.railway.app
+-  **`make start`**
+- Open localhost:3000
