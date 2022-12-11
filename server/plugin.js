@@ -17,6 +17,7 @@ import qs from 'qs';
 import Pug from 'pug';
 import i18next from 'i18next';
 
+import Rollbar from 'rollbar';
 import ru from './locales/ru.js';
 import en from './locales/en.js';
 // @ts-ignore
@@ -76,6 +77,23 @@ const setupLocalization = async () => {
         en,
       },
     });
+};
+
+const setErrorHandler = (app) => {
+  const rollbar = new Rollbar({
+    accessToken: process.env.ROLLBAR_ACCESS_KEY,
+    captureUncaught: true,
+    captureUnhandledRejections: true,
+    payload: {
+      code_version: '1.0.0',
+    },
+  });
+
+  app.setErrorHandler((error) => {
+    rollbar.error(error);
+  });
+
+  return app;
 };
 
 const addHooks = (app) => {
@@ -138,6 +156,7 @@ export default async (app, _options) => {
   await setupLocalization();
   setUpViews(app);
   setUpStaticAssets(app);
+  setErrorHandler(app);
   addRoutes(app);
   addHooks(app);
 
