@@ -84,9 +84,6 @@ const setErrorHandler = (app) => {
     accessToken: process.env.ROLLBAR_ACCESS_KEY,
     captureUncaught: true,
     captureUnhandledRejections: true,
-    payload: {
-      code_version: '1.0.0',
-    },
   });
 
   app.setErrorHandler((error) => {

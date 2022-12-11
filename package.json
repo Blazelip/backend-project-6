@@ -15,7 +15,12 @@
    },
    "jest": {
       "modulePathIgnorePatterns": [
-         "<rootDir>/__tests__/helpers/"
+         "<rootDir>/__tests__/helpers/",
+         "<rootDir>/__tests__/labels.test.js",
+         "<rootDir>/__tests__/statuses.test.js",
+         "<rootDir>/__tests__/tasks.test.js",
+         "<rootDir>/__tests__/app.test.js",
+         "<rootDir>/__tests__/session.test.js"
       ],
       "setupFiles": [
          "dotenv/config"

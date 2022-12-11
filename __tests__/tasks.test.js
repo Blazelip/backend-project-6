@@ -117,6 +117,7 @@ describe('Tasks CRUD', () => {
     await knex('statuses').truncate();
     await knex('tasks').truncate();
     await knex('labels').truncate();
+    await knex('tasks_labels').truncate();
   });
 
   afterAll(async () => {
