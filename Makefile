@@ -28,4 +28,4 @@ test:
 	npm test -s
 
 test-coverage:
-	NODE_OPTIONS=--experimental-vm-modules npx jest --bail --coverage --coverageProvider=v8 --unhandled-rejections=strict
+	npx jest --bail --coverage --coverageProvider=v8 --unhandled-rejections=strict

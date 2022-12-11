@@ -1,6 +1,6 @@
 [![Actions Status](https://github.com/Blazelip/backend-project-6/workflows/hexlet-check/badge.svg)](https://github.com/Blazelip/backend-project-6/actions)
 
-[![Actions Status](https://github.com/Blazelip/backend-project-4/actions/workflows/personal-check.yml/badge.svg)](https://github.com/Blazelip/backend-project-6/actions)
+[![Tests and Lint](https://github.com/Blazelip/backend-project-4/actions/workflows/nodejs.yml/badge.svg)](https://github.com/Blazelip/backend-project-6/actions)
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/00182bbabf071b072af7/maintainability)](https://codeclimate.com/github/Blazelip/backend-project-6/maintainability)
 
