@@ -65,7 +65,7 @@ const generateStatuses = () => {
 
 const generateLabels = () => {
   const newLabel = generateData('label', 1);
-  const labels = generateData('label', 3);
+  const labels = generateData('label', 2);
   return {
     new: newLabel[0],
     existing: {
