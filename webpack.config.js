@@ -12,13 +12,6 @@ export default {
         test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
-      {
-        test: /\.(png|jpe?g|gif|svg)$/i,
-        loader: 'file-loader',
-        options: {
-          name: '[name].[ext]',
-        },
-      },
     ],
   },
   plugins: [new MiniCssExtractPlugin()],
