@@ -86,6 +86,7 @@ describe('Labels CRUD', () => {
 
   it('deleteLabel', async () => {
     const params = mockData.labels.existing.delete;
+
     const label = await models.label.query().findOne({ name: params.name });
     const response = await app.inject({
       method: 'DELETE',
@@ -101,6 +102,8 @@ describe('Labels CRUD', () => {
   afterEach(async () => {
     await knex('users').truncate();
     await knex('labels').truncate();
+    await knex('tasks').truncate();
+    await knex('tasks_labels').truncate();
   });
 
   afterAll(async () => {

@@ -65,7 +65,7 @@ const generateStatuses = () => {
 
 const generateLabels = () => {
   const newLabel = generateData('label', 1);
-  const labels = generateData('label', 2);
+  const labels = generateData('label', 3);
   return {
     new: newLabel[0],
     existing: {
@@ -93,6 +93,17 @@ const generateTasks = (users, statuses) => {
   return { new: newTasks[0], existing: existingTasks[0], seeds: existingTasks };
 };
 
+const generateTasksLabels = (tasks, labels) => {
+  const formTaskLabel = (label) => ({
+    taskId: tasks[0].id,
+    labelId: label.id,
+  });
+
+  const existingTasksLabels = [labels[0]].map(formTaskLabel);
+
+  return { seeds: existingTasksLabels };
+};
+
 export {
-  generateUsers, generateStatuses, generateTasks, generateLabels,
+  generateUsers, generateStatuses, generateTasks, generateLabels, generateTasksLabels,
 };
