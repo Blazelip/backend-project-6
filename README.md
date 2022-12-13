@@ -7,7 +7,7 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/00182bbabf071b072af7/test_coverage)](https://codeclimate.com/github/Blazelip/backend-project-6/test_coverage)
 
 ### Demonstration webpage:
-https://backend-project-6-production.up.railway.app
+https://backend-project-6-production-2feb.up.railway.app
 
 ## Description
 Fourth studying project created with Node.js, Pug and bootstrap.
