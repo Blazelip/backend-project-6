@@ -40,7 +40,7 @@ block content
               a(href=`/tasks/${task.id}`)= task.name
             td= task.status.name
             td= `${task.creator.firstName} ${task.creator.lastName}`
-            td= `${task.executor.firstName} ${task.executor.lastName}`
+            td= task.executor && `${task.executor.firstName} ${task.executor.lastName}`
             td= formatDate(task.createdAt)
             if !isTasksEmpty(tasks)
               td
